@@ -1,0 +1,28 @@
+<!-- no-cache -->
+{% extends "templates/web.html" %}
+
+
+{% block title %}{{ 'Orders' }}{% endblock %}
+{% block header %}
+<div class="row">
+    <div class="col-12">
+        <h1>Pending Orders</h1><hr class="heading">
+    </div>
+</div>
+{% endblock header %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-12">
+        <div class="result">
+        {% for name in names %}
+           <div> 
+                {% include "kot/www/kitchen/inner.html" %}
+           </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

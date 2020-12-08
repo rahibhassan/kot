@@ -1,0 +1,22 @@
+hr.heading{
+    border-top: 3px solid black;
+}
+
+.navbar{
+    display: none;
+}
+
+.web-footer{
+    display: none;
+}
+
+.topcorner{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.view{
+    position:relative;
+    left: 15px;
+}

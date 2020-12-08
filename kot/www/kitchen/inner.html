@@ -1,0 +1,56 @@
+<div class="container card m-2">
+    <div class="row">
+        <div class="col-9 p-2">
+            {% set doc = frappe.get_doc('Sales Invoice', name.name) %}
+
+            <h5 style="margin-left: 10px; margin-top: 2px;">
+                {{ doc.customer_name }} - {{ doc.name }}
+            </h5>
+
+            {% set default_time = '3:33:33'|string %}
+            {% set start_time = doc.start_time|string %}
+        </div>
+
+        <div class="col-3">
+            {%- if start_time == default_time -%}
+            <button class="btn btn-outline-primary btn-xs action topcorner mt-4 mr-4" data-actionType="start" data-id={{name.name}}>
+                Start
+            </button>
+            {%- endif -%}
+
+            {%- if start_time != default_time -%}
+            <button class="btn btn-outline-primary btn-xs action {{name.name}} topcorner mt-4 mr-4" data-actionType="complete" data-id={{name.name}}>
+                Complete
+            </button>
+            {%- else -%}
+            <button class="btn btn-outline-primary btn-xs action {{name.name}} topcorner mt-4 mr-4" style="display:none;" data-actionType="complete" data-id={{name.name}}>
+                Complete
+            </button>
+
+            {%- endif-%}
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="{{ name.name }}" class="collapse">
+            <ol>
+                {%- for row in doc.items -%}
+                <li>
+            
+                    {{ row.item_name }} Qty: {{ row.qty}} <br>
+
+                </li>
+                {%- endfor -%}
+            </ol>   
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="view">
+            <button class="btn-link btn btn-xs" type="button" data-toggle="collapse" data-target="{{ 
+                "#" + name.name   }}">
+                View Items
+            </button>
+        </div>  
+    </div>
+</div>

@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include kot *.css
+recursive-include kot *.csv
+recursive-include kot *.html
+recursive-include kot *.ico
+recursive-include kot *.js
+recursive-include kot *.json
+recursive-include kot *.md
+recursive-include kot *.png
+recursive-include kot *.py
+recursive-include kot *.svg
+recursive-include kot *.txt
+recursive-exclude kot *.pyc
