@@ -51,14 +51,15 @@ $(() => {
 
                 //Stop the timer, so page wont refresh mid of a request.
                 end_timer();
+                console.log("end")
 
                 //Create the start time
                 var d = new Date();
-                start_time = "" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+                var start_time = "" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
                 //console.log(start_time)
                
                
-                frappe.db.set_value('Sales Invoice', id, {
+                frappe.db.set_value('POS Invoice', id, {
                     
                     'start_time': start_time,
                     
@@ -82,6 +83,7 @@ $(() => {
                         //As data saved, set timer back on.
                         start_timer();
                     })
+                    // start_timer();
 
 
             } else if (type == "complete") {
@@ -89,7 +91,7 @@ $(() => {
                 end_timer();
 
                 var d = new Date();
-                end_time = "" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+                var end_time = "" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
                 //console.log(end_time)
 
                 //Get end time from local storage. 
@@ -97,7 +99,7 @@ $(() => {
                
                 //console.log(start_time)
                 
-                frappe.db.set_value('Sales Invoice', id, {
+                frappe.db.set_value('POS Invoice', id, {
                     'fulfilled': 'Yes',
                     //'start_time': start_time,
                     'end_time': end_time
@@ -110,6 +112,8 @@ $(() => {
                     start_timer()
                     localStorage.removeItem(id)
                 })
+
+                console.log("fafil")
 
 
                    /*  .then(function () {

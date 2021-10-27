@@ -1,7 +1,8 @@
 <div class="container card m-2">
     <div class="row">
         <div class="col-9 p-2">
-            {% set doc = frappe.get_doc('Sales Invoice', name.name) %}
+            {% set doc = frappe.get_doc('POS Invoice',name.name) %}
+            
 
             <h5 style="margin-left: 10px; margin-top: 2px;">
                 {{ doc.customer_name }} - {{ doc.name }}
@@ -17,6 +18,7 @@
                 Start
             </button>
             {%- endif -%}
+            
 
             {%- if start_time != default_time -%}
             <button class="btn btn-outline-primary btn-xs action {{name.name}} topcorner mt-4 mr-4" data-actionType="complete" data-id={{name.name}}>
@@ -48,7 +50,7 @@
     <div class="row">
         <div class="view">
             <button class="btn-link btn btn-xs" type="button" data-toggle="collapse" data-target="{{ 
-                "#" + name.name   }}">
+                "#" + name.name}}">
                 View Items
             </button>
         </div>  

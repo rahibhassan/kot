@@ -3,10 +3,8 @@ from datetime import date
 
 def get_context(context):
     day = date.today()
-    invoices = frappe.db.get_list("Sales Invoice", filters = {'fulfilled': 'No', 'posting_date': day})
-
-
-
+    invoices = frappe.db.get_list("POS Invoice", filters = {'fulfilled': 'No', 'posting_date': day})
+    
     context.names = invoices
     context.hello = "hello"
 

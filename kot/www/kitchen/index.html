@@ -1,12 +1,17 @@
 <!-- no-cache -->
 {% extends "templates/web.html" %}
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
 
 
 {% block title %}{{ 'Orders' }}{% endblock %}
 {% block header %}
+
 <div class="row">
     <div class="col-12">
         <h1>Pending Orders</h1><hr class="heading">
+        
     </div>
 </div>
 {% endblock header %}
@@ -15,8 +20,10 @@
 <div class="row">
     <div class="col-12">
         <div class="result">
+            
         {% for name in names %}
            <div> 
+               
                 {% include "kot/www/kitchen/inner.html" %}
            </div>
         {% endfor %}
