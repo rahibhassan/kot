@@ -74,7 +74,7 @@ $(function () {
 
 
 		//ome
-		var jqxhr = $.ajax("http://print.local:5000/print")
+		var jqxhr = $.ajax("http://print.now:5000/print")
 			.done(function () {
 				console.log("success");
 			})
