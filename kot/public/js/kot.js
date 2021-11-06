@@ -48,7 +48,7 @@ $(function () {
 	// 	console.log("print initiated")
 	// })
 
-	$('#page-point-of-sale').click('.invoice-summary-wrapper .print-btn', (e) => {
+	$('#page-point-of-sale').click('"46c495f63c".invoice-summary-wrapper .print-btn', (e) => {
 
 		e.preventDefault();
 		console.log("print initiated")
@@ -60,15 +60,20 @@ $(function () {
 
 		frappe.db.get_doc('POS Invoice', invoice_id)
 			.then(doc => {
-				console.log(doc.items)
+	
 				// item_array=[...item_array,{id:1,name:"fadil"}]
+				
 
 				doc.items.map((doc =>
-					item_array = [...item_array, { Item_Name: doc.item_name, Item_Code: doc.item_code, Qty: doc.qty }]
+					item_array = [...item_array, { invoice:invoice_id, Item_Name: doc.item_name, Item_Code: doc.item_code, Qty: doc.qty }]
+
+					
+
+
 
 					//console.log("Item Name:",doc.item_name,"Item Code:",doc.item_code,"Qty:",doc.qty)
 				))
-				console.log("item_array", item_array)
+				
 				array_post()
 			})
 
@@ -98,7 +103,9 @@ $(function () {
 		// 	  console.log( "Data Saved: " + msg );
 		// 	});
 		var array_post=()=>{
-
+			// invoice_id
+			// item_array.push(invoice_id)
+			// console.log("invoice id added",item_array)
 			var settings = {
 				"url": "http://localhost:5000/print",
 				"method": "POST",
@@ -107,7 +114,7 @@ $(function () {
 					"Content-Type": "application/json",
 					"Accept": "application/json"
 				},
-				"data": JSON.stringify({ "item_array": item_array }),
+				"data": JSON.stringify({ "item_array": item_array}),
 			};
 	
 			$.ajax(settings).done(function (response) {
