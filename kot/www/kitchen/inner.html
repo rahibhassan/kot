@@ -8,6 +8,8 @@
                 {{ doc.customer_name }} - {{ doc.name }}
             </h5>
 
+            <p style="margin-left: 10px; margin-top: 2px; color:black; font-size:18px;">Order Type : {{doc.order_type}}</p>
+
             {% set default_time = '3:33:33'|string %}
             {% set start_time = doc.start_time|string %}
         </div>
@@ -35,15 +37,15 @@
 
     <div class="row">
         <div id="{{ name.name }}" class="collapse">
-            <ol>
+            <ul>
                 {%- for row in doc.items -%}
-                <li>
+                <li style="color: black; font-size:15px;">
             
                     {{ row.item_name }} Qty: {{ row.qty}} <br>
 
                 </li>
                 {%- endfor -%}
-            </ol>   
+            </ul>   
         </div>
     </div>
     
