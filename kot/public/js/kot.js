@@ -47,37 +47,36 @@ $(function () {
 	// 	e.preventDefault();
 	// 	console.log("print initiated")
 	// })
+	$('div').on('click', 'div.print-btn', function(e) {
+		console.log("1");
+		console.log(e);
+	// });
+	// $('#page-point-of-sale').click('.invoice-summary-wrapper .print-btn', (e) => {
 
-	$('#page-point-of-sale').click('"46c495f63c".invoice-summary-wrapper .print-btn', (e) => {
+		// console.log("2")
+		// console.log(e);
+		// console.log($(e));
 
-		e.preventDefault();
-		console.log("print initiated")
-		let invoice = document.querySelector('.invoice-name')
-		let invoice_id = invoice.textContent
-		console.log(invoice_id)
+		
+			console.log("Print button clicked.")
+			let invoice = document.querySelector('.invoice-name')
+			let invoice_id = invoice.textContent
+			console.log(invoice_id)
 
-
-
-		frappe.db.get_doc('POS Invoice', invoice_id)
+			frappe.db.get_doc('POS Invoice', invoice_id)
 			.then(doc => {
 	
+				let order_type=doc.order_type
+				console.log(order_type)
 				// item_array=[...item_array,{id:1,name:"fadil"}]
-				
-
+				item_array=[]
 				doc.items.map((doc =>
-					item_array = [...item_array, { invoice:invoice_id, Item_Name: doc.item_name, Item_Code: doc.item_code, Qty: doc.qty }]
-
-					
-
-
-
+					item_array = [...item_array, { order_type:order_type, invoice:invoice_id, Item_Name: doc.item_name, Item_Code: doc.item_code, Qty: doc.qty }]
 					//console.log("Item Name:",doc.item_name,"Item Code:",doc.item_code,"Qty:",doc.qty)
 				))
 				
 				array_post()
 			})
-
-
 		//ome
 		var jqxhr = $.ajax("http://print.now:5000/print")
 			.done(function () {
@@ -121,6 +120,13 @@ $(function () {
 				console.log(response);
 			});
 		}
+		
+		// e.preventDefault();
+		
+
+
+
+		
 
 
 		// console.log(e.target.innerText)
