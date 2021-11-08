@@ -47,9 +47,10 @@ $(function () {
 	// 	e.preventDefault();
 	// 	console.log("print initiated")
 	// })
-	$('div').on('click', 'div.print-btn', function(e) {
+	$('div.page-content').on('click', 'div.print-btn', function(e) {
+		//$(e.currentTarget).unbind('click');
 		console.log("1");
-		console.log(e);
+		console.log();
 	// });
 	// $('#page-point-of-sale').click('.invoice-summary-wrapper .print-btn', (e) => {
 
@@ -62,6 +63,7 @@ $(function () {
 			let invoice = document.querySelector('.invoice-name')
 			let invoice_id = invoice.textContent
 			console.log(invoice_id)
+
 
 			frappe.db.get_doc('POS Invoice', invoice_id)
 			.then(doc => {
@@ -77,34 +79,9 @@ $(function () {
 				
 				array_post()
 			})
-		//ome
-		var jqxhr = $.ajax("http://print.now:5000/print")
-			.done(function () {
-				console.log("success");
-			})
-			.fail(function () {
-				console.log("error");
-			})
-			.always(function () {
-				console.log("complete");
-			});
 
-
-		//two
-		// var array=JSON.stringify(item_array)
-		// $.ajax({
-		// 	method: "POST",
-		// 	url: "http://localhost:5000/print",
-		// 	data: item_array,
-		// 	contentType:'application/json;charset=UTF-8'
-		//   })
-		// 	.done(function( msg ) {
-		// 	  console.log( "Data Saved: " + msg );
-		// 	});
 		var array_post=()=>{
-			// invoice_id
-			// item_array.push(invoice_id)
-			// console.log("invoice id added",item_array)
+
 			var settings = {
 				"url": "http://localhost:5000/print",
 				"method": "POST",
@@ -118,23 +95,11 @@ $(function () {
 	
 			$.ajax(settings).done(function (response) {
 				console.log(response);
+				// e.preventDefault();
+				e.stopPropagation();
 			});
 		}
 		
-		// e.preventDefault();
-		
-
-
-
-		
-
-
-		// console.log(e.target.innerText)
-
-		//Ensure only click on li triggers adding data to td
-		// if ($(e.target).is('.invoice-summary-wrapper .print-btn')) {
-		// 	$("td.active").html(e.target.innerText)
-		// }
 
 
 
@@ -144,32 +109,6 @@ $(function () {
 	if (route[0] == "point-of-sale") {
 
 		console.log("success")
-
-		//ome
-		// var jqxhr = $.ajax( "http//:localhost:5000/print" )
-		// 	.done(function() {
-		// 		console.log("success");
-		// 	})
-		// 	.fail(function() {
-		// 		console.log("error");
-		// 	})
-		// 	.always(function() {
-		// 		console.log("complete");
-		// 	});
-
-
-		// 	//two
-		// 	var array=JSON.stringify(item_array)
-		// 	$.ajax({
-		// 		method: "POST",
-		// 		url: "http://localhost:5000/print",
-		// 		data: array,
-		// 		contentType:'application/json;charset=UTF-8'
-		// 	  })
-		// 		.done(function( msg ) {
-		// 		  console.log( "Data Saved: " + msg );
-		// 		});
-
 
 
 	}
